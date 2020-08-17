@@ -1,0 +1,8 @@
+@import './src/styles/variables';
+.header {
+  display:flex;
+  padding: 20px;
+  justify-content: center;
+  background: $main-gray;
+  margin: 10px 0;
+}
