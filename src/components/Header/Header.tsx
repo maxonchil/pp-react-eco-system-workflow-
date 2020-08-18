@@ -1,6 +1,6 @@
 import React from 'react';
 import "./Header.scss"
-import Button from '../../shared/Button/Button';
+import Button from '../shared/Button/Button';
 import { connect, useDispatch } from 'react-redux';
 import { showModal } from '../../store/actions/app.actions';
 
