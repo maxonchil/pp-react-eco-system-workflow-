@@ -1,4 +1,6 @@
-const ROLES = {
+import IEmployeeRoles from '../interfaces/i-employee-roles';
+
+const EMPLOYEES: IEmployeeRoles = {
     JUNIOR: {
         key: 'Junior',
         value: 'JUNIOR',
@@ -20,4 +22,4 @@ const ROLES = {
         salary: 5000
     },
 };
-export default ROLES;
+export default EMPLOYEES;

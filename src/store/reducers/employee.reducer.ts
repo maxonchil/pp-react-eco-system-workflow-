@@ -1,7 +1,8 @@
 import IEmployee from '../../interfaces/i-employee';
 import IEmployeeReducerProps from '../../interfaces/i-employee-reducer-props';
 import EmployeeTypes from '../types/employee.types.enum'
-import EmployeeSalaries from '../../components/ModalHireDev/employee-salaries';
+import EMPLOYEES from '../../data/employees';
+
 
 const initialState: IEmployee[] = [
     {
@@ -49,11 +50,9 @@ const initialState: IEmployee[] = [
 const employeeReducer = (state = initialState, {type, payload}: IEmployeeReducerProps): IEmployee[] => {
     switch (type) {
         case EmployeeTypes.ADD_EMPLOYEE:
-            return {...state, ...{
-                    role: payload,
-                    salary: EmployeeSalaries[payload]
-                }};
+            return [...state, {role: payload, salary: EMPLOYEES[payload].salary}];
         default:
-            return {...state};
+            return [...state];
     }
 };
+export default employeeReducer;
