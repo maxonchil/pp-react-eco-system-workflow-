@@ -16,8 +16,10 @@ const ModalHireDev = (): JSX.Element => {
         const elements = [];
         let i = 0;
         for (let role in employeesRoles) {
-            elements.push(<option value={employeesRoles[role].value} key={i}>{employeesRoles[role].key}</option>);
-            i++;
+            if(employeesRoles.hasOwnProperty(role)) {
+                elements.push(<option value={employeesRoles[role].value} key={i}>{employeesRoles[role].key}</option>);
+                i++;
+            }
         }
         return elements;
     };
@@ -26,9 +28,11 @@ const ModalHireDev = (): JSX.Element => {
             return;
         }
         dispatch(addEmployee(selectedRole));
+        dispatch(hideModal());
     };
 
     return (ReactDOM.createPortal(
+        <div className='modal'>
         <div className="modal-dialog">
             <div className="modal-content">
                 <div className="modal-header">
@@ -47,6 +51,7 @@ const ModalHireDev = (): JSX.Element => {
                     <button type="button" className="btn btn-primary" onClick={handleClick}>Save changes</button>
                 </div>
             </div>
+        </div>
         </div>,
         rootPortalElement))
 };
