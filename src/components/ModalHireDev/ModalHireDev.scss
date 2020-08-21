@@ -2,3 +2,12 @@
   display: block;
 }
 
+.dropdown-menu{
+  display: block;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.dropdown-item {
+  cursor: pointer;
+}

@@ -1,6 +1,6 @@
-import { IAppState } from './i-app-state';
+import { IAppStore } from './i-app-store';
 
 export interface IAppReducerProps {
-    state: IAppState
+    state: IAppStore
     type:string;
 }

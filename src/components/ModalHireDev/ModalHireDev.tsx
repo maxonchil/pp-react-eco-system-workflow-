@@ -1,15 +1,38 @@
-import React from 'react';
+import React, { ChangeEvent } from 'react';
 import ReactDOM from 'react-dom'
 import "./ModalHireDev.scss";
-import { useDispatch } from 'react-redux';
+import { connect, useDispatch } from 'react-redux';
 import { hideModal } from '../../store/actions/app.actions';
+import ROLES from '../../data/employees';
+import { addEmployee } from '../../store/actions/employee.actions';
 
 const ModalHireDev = (): JSX.Element => {
-    const rootElement = document.getElementById('portal-root') as HTMLElement;
-    const dispatch = useDispatch();
     const closeModal = () => dispatch(hideModal());
+    const dispatch = useDispatch();
+    let selectedRole: string;
+    const rootPortalElement = document.getElementById('portal-root') as HTMLElement;
+    const defaultDropDownValue = 'Select developer lever qualification';
+    const iterateEmployeesRoles = (employeesRoles: any) => {
+        const elements = [];
+        let i = 0;
+        for (let role in employeesRoles) {
+            if(employeesRoles.hasOwnProperty(role)) {
+                elements.push(<option value={employeesRoles[role].value} key={i}>{employeesRoles[role].key}</option>);
+                i++;
+            }
+        }
+        return elements;
+    };
+    const handleClick = (): void => {
+        if (!selectedRole) {
+            return;
+        }
+        dispatch(addEmployee(selectedRole));
+        dispatch(hideModal());
+    };
 
     return (ReactDOM.createPortal(
+        <div className='modal'>
         <div className="modal-dialog">
             <div className="modal-content">
                 <div className="modal-header">
@@ -18,16 +41,19 @@ const ModalHireDev = (): JSX.Element => {
                         <span>&times;</span>
                     </button>
                 </div>
-                <div className="modal-body">
-                    <p>Modal body text goes here.</p>
-                </div>
+                <select className="custom-select" defaultValue={defaultDropDownValue}
+                        onChange={(event: ChangeEvent<HTMLSelectElement>) => selectedRole = event.target.value}>
+                    <option value={defaultDropDownValue} disabled>{defaultDropDownValue}</option>
+                    {iterateEmployeesRoles(ROLES)}
+                </select>
                 <div className="modal-footer">
                     <button type="button" className="btn btn-secondary" onClick={closeModal}>Close</button>
-                    <button type="button" className="btn btn-primary">Save changes</button>
+                    <button type="button" className="btn btn-primary" onClick={handleClick}>Save changes</button>
                 </div>
             </div>
+        </div>
         </div>,
-        rootElement))
+        rootPortalElement))
 };
 
-export default ModalHireDev;
+export default connect(null, null)(ModalHireDev);
