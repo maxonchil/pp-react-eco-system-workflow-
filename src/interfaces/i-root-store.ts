@@ -4,6 +4,6 @@ import IBudgetStore from './i-budget-store';
 
 export interface IRootStore {
     app: IAppStore;
-    employee: IEmployee[];
+    employees: IEmployee[];
     budget: IBudgetStore;
 }

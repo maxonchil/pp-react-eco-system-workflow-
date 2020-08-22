@@ -1,8 +1,8 @@
 import IEmployeeRoles from './i-employee-roles';
 
-interface IEmployeeReducerProps {
+interface IEmployeesReducerProps {
     type: string
     payload: keyof IEmployeeRoles;
 }
 
-export default IEmployeeReducerProps;
+export default IEmployeesReducerProps;

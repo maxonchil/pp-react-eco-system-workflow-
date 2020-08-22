@@ -1,6 +1,6 @@
 import IEmployee from '../../interfaces/i-employee';
-import IEmployeeReducerProps from '../../interfaces/i-employee-reducer-props';
-import EmployeeTypes from '../types/employee.types.enum'
+import IEmployeesReducerProps from '../../interfaces/i-employees-reducer-props';
+import EmployeeTypes from '../types/employeeTypes.enum'
 import EMPLOYEES from '../../data/employees';
 
 
@@ -47,7 +47,7 @@ const initialState: IEmployee[] = [
     }
 ];
 
-const employeeReducer = (state = initialState, {type, payload}: IEmployeeReducerProps): IEmployee[] => {
+const employeesReducer = (state = initialState, {type, payload}: IEmployeesReducerProps): IEmployee[] => {
     switch (type) {
         case EmployeeTypes.ADD_EMPLOYEE:
             return [...state, {role: payload, salary: EMPLOYEES[payload].salary}];
@@ -55,4 +55,4 @@ const employeeReducer = (state = initialState, {type, payload}: IEmployeeReducer
             return [...state];
     }
 };
-export default employeeReducer;
+export default employeesReducer;

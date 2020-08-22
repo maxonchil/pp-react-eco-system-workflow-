@@ -1,11 +1,11 @@
 import {combineReducers} from "redux";
 import appReducer from "./app.reducer";
-import employeeReducer from './employee.reducer';
+import employeesReducer from './employees.reducer';
 import budgetReducer from './budget.reducer';
 
 const rootReducer = combineReducers({
     app: appReducer,
-    employee: employeeReducer,
+    employees: employeesReducer,
     budget: budgetReducer
 });
 

@@ -6,7 +6,7 @@ import { IRootStore } from '../../interfaces/i-root-store';
 import Employee from '../Employee/Employee';
 
 const EmployeeList = (): JSX.Element => {
-    const employees = useSelector((store: IRootStore): IEmployee[] => store.employee);
+    const employees = useSelector((store: IRootStore): IEmployee[] => store.employees);
     const employeesListElement = employees.map((employee: IEmployee, index: number) => <Employee key={index}
                                                                                                  salary={employee.salary}
                                                                                                  role={employee.role}/>);
