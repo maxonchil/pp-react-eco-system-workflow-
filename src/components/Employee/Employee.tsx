@@ -3,7 +3,7 @@ import './Employee.scss';
 import IEmployeeProps from '../../interfaces/i-employee-props';
 import Button from '../shared/Button/Button';
 
-const Employee = ({role, salary}:IEmployeeProps) => {
+const Employee = ({role, salary, experience, isEmployeeCanBePromoted}:IEmployeeProps) => {
     const buttonTextFireDev = 'Fire';
     const buttonTextPromoteDev = 'Promote';
     const handleClickFireDev =() => console.log('dev is fired');
@@ -12,9 +12,10 @@ const Employee = ({role, salary}:IEmployeeProps) => {
             <div className="card-body">
                 <p className="card-text">Position: {role}</p>
                <p className='card-text'>Employee salary: {salary}</p>
+                <p className='card-text'>Employee experience: {experience}</p>
             </div>
         <Button text={buttonTextFireDev} handleClick={handleClickFireDev}/>
-        <Button text={buttonTextPromoteDev} handleClick={handleClickPromoteDev}/>
+        {isEmployeeCanBePromoted && <Button text={buttonTextPromoteDev} handleClick={handleClickPromoteDev}/>}
     </div>
 };
 

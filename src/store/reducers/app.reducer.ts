@@ -3,7 +3,8 @@ import { IAppReducerProps } from '../../interfaces/i-app-reducer-props';
 import  AppTypes  from '../types/appTypes.enum';
 
 const initialState = {
-    isModalOpen: false
+    isModalOpen: false,
+    isAlertShowed: false
 };
 
 const appReducer = (state = initialState, {type}: IAppReducerProps): IAppStore => {
@@ -12,6 +13,12 @@ const appReducer = (state = initialState, {type}: IAppReducerProps): IAppStore =
             return {...state, isModalOpen: true};
         case AppTypes.HIDE_MODAL:
             return {...state, isModalOpen: false};
+        case AppTypes.SHOW_ALERT: {
+
+            return {...state, isAlertShowed: true}
+        } case AppTypes.HIDE_ALERT: {
+            return {...state, isAlertShowed: false}
+        }
         default:
             return state;
     }

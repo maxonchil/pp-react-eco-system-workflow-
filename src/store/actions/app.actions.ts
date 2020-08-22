@@ -6,3 +6,9 @@ export const showModal = () => {
 export const hideModal = () => {
     return {type: AppTypes.HIDE_MODAL}
 };
+export const showAlert = () => {
+    return {type:  AppTypes.SHOW_ALERT}
+};
+export const hideAlert = () => {
+    return {type: AppTypes.HIDE_ALERT}
+};
