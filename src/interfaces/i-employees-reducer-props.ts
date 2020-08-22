@@ -1,8 +1,9 @@
-import IEmployeeRoles from './i-employee-roles';
+import IEmployee from './i-employee';
 
 interface IEmployeesReducerProps {
-    type: string
-    payload: keyof IEmployeeRoles;
+    type: string;
+    payload: IEmployee[];
+
 }
 
 export default IEmployeesReducerProps;

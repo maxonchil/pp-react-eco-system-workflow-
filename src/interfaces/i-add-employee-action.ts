@@ -1,5 +1,7 @@
+import IEmployee from './i-employee';
+
 interface IAddEmployeeAction {
     type: string;
-    payload: string;
+    payload: IEmployee[];
 };
 export default IAddEmployeeAction;

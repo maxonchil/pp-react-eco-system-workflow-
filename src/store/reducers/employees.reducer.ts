@@ -1,11 +1,11 @@
 import IEmployee from '../../interfaces/i-employee';
 import IEmployeesReducerProps from '../../interfaces/i-employees-reducer-props';
 import EmployeeTypes from '../types/employeeTypes.enum'
-import EMPLOYEES from '../../data/employees';
 
 
 const initialState: IEmployee[] = [
     {
+        id: 1,
         role: 'JUNIOR',
         salary: 900,
         experience: 1,
@@ -13,6 +13,7 @@ const initialState: IEmployee[] = [
         isEmployeeCanBePromoted: true
     },
     {
+        id:2,
         role: 'JUNIOR',
         salary: 900,
         experience: 5,
@@ -20,6 +21,7 @@ const initialState: IEmployee[] = [
         isEmployeeCanBePromoted: false
     },
     {
+        id: 3,
         role: 'JUNIOR',
         salary: 900,
         experience: 4,
@@ -27,6 +29,7 @@ const initialState: IEmployee[] = [
         isEmployeeCanBePromoted: false
     },
     {
+        id: 4,
         role: 'JUNIOR',
         salary: 900,
         experience: 3,
@@ -34,6 +37,7 @@ const initialState: IEmployee[] = [
         isEmployeeCanBePromoted: false
     },
     {
+        id:5,
         role: 'MIDDLE',
         salary: 1500,
         experience: 12,
@@ -41,6 +45,7 @@ const initialState: IEmployee[] = [
         isEmployeeCanBePromoted: false
     },
     {
+        id: 6,
         role: 'MIDDLE',
         salary: 1500,
         experience: 15,
@@ -48,6 +53,7 @@ const initialState: IEmployee[] = [
         isEmployeeCanBePromoted: false
     },
     {
+        id: 7,
         role: 'MIDDLE',
         salary: 1500,
         experience: 24,
@@ -55,6 +61,7 @@ const initialState: IEmployee[] = [
         isEmployeeCanBePromoted: false
     },
     {
+        id: 8,
         role: 'SENIOR',
         salary: 3000,
         experience: 36,
@@ -62,6 +69,7 @@ const initialState: IEmployee[] = [
         isEmployeeCanBePromoted: false
     },
     {
+        id:9,
         role: 'SENIOR',
         salary: 3000,
         experience: 50,
@@ -69,6 +77,7 @@ const initialState: IEmployee[] = [
         isEmployeeCanBePromoted: true
     },
     {
+        id:10,
         role: 'Manager',
         salary: 5000,
         experience: 50,
@@ -79,13 +88,9 @@ const initialState: IEmployee[] = [
 const employeesReducer = (state = initialState, {type, payload}: IEmployeesReducerProps): IEmployee[] => {
     switch (type) {
         case EmployeeTypes.ADD_EMPLOYEE:
-            return [...state, {
-                role: payload,
-                salary: EMPLOYEES[payload].salary,
-                experience: EMPLOYEES[payload].experience,
-                experienceForPromotion: EMPLOYEES[payload].experienceForPromotion,
-                isEmployeeCanBePromoted: false
-            }];
+            return [...state, ...payload];
+        case EmployeeTypes.UPDATE_EMPLOYEES:
+            return [...payload];
         default:
             return [...state];
     }

@@ -5,7 +5,7 @@ import { connect, useDispatch, useSelector } from "react-redux";
 import { IAppStore } from './interfaces/i-app-store';
 import EmployeeList from './components/EmployeeList/EmployeeList';
 import Budget from './components/Budget/Budget';
-import { paySalary } from './store/actions/budget.action';
+import { incrementExperience, paySalary } from './store/actions/budget.action';
 import Alert from './components/shared/Alert/Alert';
 import ModalHireDev from './components/ModalHireDev/ModalHireDev';
 
@@ -15,7 +15,8 @@ function App(): JSX.Element {
     const dispatch = useDispatch();
     useEffect(() => {
         if (!isLoaded) {
-            dispatch(paySalary())
+            dispatch(paySalary());
+            dispatch(incrementExperience());
         }
         changeLoadState(true);
     });

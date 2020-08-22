@@ -1,4 +1,5 @@
 interface IEmployeeEntities {
+        id: number;
         key: string;
         value: string;
         salary: number;
