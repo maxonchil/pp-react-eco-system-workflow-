@@ -4,6 +4,8 @@ import BudgetTypes from '../types/budgetTypes.enum';
 import IUpdateBudgetAction from '../../interfaces/i-update-budget-action';
 import { hideAlert, showAlert } from './app.actions';
 import { updateEmployee } from './employee.actions';
+import incrementEmployeeExperience from '../../helpers/incrementEmployeeExperience';
+import IEmployee from '../../interfaces/i-employee';
 
 export const paySalary = () => {
     return async (dispatch: CallableFunction, getState: () => IRootStore): Promise<void> => {
@@ -12,7 +14,7 @@ export const paySalary = () => {
             const updatedFirmBudget = payEmployeesSalary(employees, budget.currentFirmBudget);
             dispatch(updateBudget(updatedFirmBudget));
             dispatch(showAlert());
-            dispatch(incrementExperience())
+            dispatch(incrementExperience());
             setTimeout(() => {
                 dispatch(hideAlert())
             }, 2000);
@@ -25,7 +27,7 @@ export const incrementExperience = () => {
     return async (dispatch: CallableFunction, getState: () => IRootStore): Promise<void> => {
         setTimeout(() => {
             const {employees} = getState();
-            const updatedEmployees = employees.map(employee => ({...employee, experience: employee.experience + 1}));
+            const updatedEmployees = incrementEmployeeExperience(employees);
             dispatch(updateEmployee(updatedEmployees))
         }, 5000)
     }

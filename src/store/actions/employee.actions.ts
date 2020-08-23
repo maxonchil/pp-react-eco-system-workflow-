@@ -3,15 +3,17 @@ import IAddEmployeeAction from '../../interfaces/i-add-employee-action';
 import IEmployee from '../../interfaces/i-employee';
 import IUpdateEmployeesAction from '../../interfaces/i-update-employees-action';
 import EMPLOYEES from '../../data/employees';
-import IEmployeeRoles from '../../interfaces/i-employee-roles';
+import IEmployeePosition from '../../interfaces/i-employee-position';
+import { IRootStore } from '../../interfaces/i-root-store';
+import { promoteEmployeePosition } from '../../helpers/promoteEmployeePosition';
 
-export const addEmployee = (role: keyof IEmployeeRoles): IAddEmployeeAction => {
+export const addEmployee = (position: keyof IEmployeePosition): IAddEmployeeAction => {
     const newEmployee = {
-        role,
-        id:EMPLOYEES[role].id,
-        salary: EMPLOYEES[role].salary,
-        experience: EMPLOYEES[role].experience,
-        experienceForPromotion: EMPLOYEES[role].experienceForPromotion,
+        position,
+        id: EMPLOYEES[position].id,
+        salary: EMPLOYEES[position].salary,
+        experience: EMPLOYEES[position].experience,
+        experienceForPromotion: EMPLOYEES[position].experienceForPromotion,
         isEmployeeCanBePromoted: false
     };
     return {type: EmployeeTypes.ADD_EMPLOYEE, payload: [newEmployee]}
@@ -19,6 +21,11 @@ export const addEmployee = (role: keyof IEmployeeRoles): IAddEmployeeAction => {
 export const updateEmployee = (employees: IEmployee[]): IUpdateEmployeesAction => {
     return {type: EmployeeTypes.UPDATE_EMPLOYEES, payload: employees}
 };
-// export const promoteEmployee = () => {
-//     return {type:PROMOTE_EMPLOYEE, }
-// }
+export const promoteEmployee = (id: number) => {
+    return async (dispatch: CallableFunction, getState: () => IRootStore): Promise<void> => {
+        const {employees} = getState();
+        const employeeForPromoting = employees.find(employee => employee.id === id) as IEmployee;
+        const promotedEmployee = promoteEmployeePosition(employeeForPromoting);
+        dispatch({type: EmployeeTypes.PROMOTE_EMPLOYEE, payload: [promotedEmployee]});
+    }
+};

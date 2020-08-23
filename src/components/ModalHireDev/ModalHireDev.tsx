@@ -3,31 +3,32 @@ import ReactDOM from 'react-dom'
 import "./ModalHireDev.scss";
 import { connect, useDispatch } from 'react-redux';
 import { hideModal } from '../../store/actions/app.actions';
-import ROLES from '../../data/employees';
+import EMPLOYEES from '../../data/employees';
 import { addEmployee } from '../../store/actions/employee.actions';
+import IEmployeePosition from '../../interfaces/i-employee-position';
 
 const ModalHireDev = (): JSX.Element => {
     const closeModal = () => dispatch(hideModal());
     const dispatch = useDispatch();
-    let selectedRole: string;
+    let selectedPosition: keyof IEmployeePosition;
     const rootPortalElement = document.getElementById('portal-root') as HTMLElement;
     const defaultDropDownValue = 'Select developer lever qualification';
-    const iterateEmployeesRoles = (employeesRoles: any) => {
+    const iterateEmployeesPositions = (employeesPositions: any) => {
         const elements = [];
         let i = 0;
-        for (let role in employeesRoles) {
-            if(employeesRoles.hasOwnProperty(role)) {
-                elements.push(<option value={employeesRoles[role].value} key={i}>{employeesRoles[role].key}</option>);
+        for (let positions in employeesPositions) {
+            if(employeesPositions.hasOwnProperty(positions)) {
+                elements.push(<option value={employeesPositions[positions].value} key={i}>{employeesPositions[positions].key}</option>);
                 i++;
             }
         }
         return elements;
     };
     const handleClick = (): void => {
-        if (!selectedRole) {
+        if (!selectedPosition) {
             return;
         }
-        dispatch(addEmployee(selectedRole));
+        dispatch(addEmployee(selectedPosition));
         dispatch(hideModal());
     };
 
@@ -42,9 +43,9 @@ const ModalHireDev = (): JSX.Element => {
                     </button>
                 </div>
                 <select className="custom-select" defaultValue={defaultDropDownValue}
-                        onChange={(event: ChangeEvent<HTMLSelectElement>) => selectedRole = event.target.value}>
+                        onChange={(event: ChangeEvent<HTMLSelectElement>) => selectedPosition = event.target.value as keyof IEmployeePosition}>
                     <option value={defaultDropDownValue} disabled>{defaultDropDownValue}</option>
-                    {iterateEmployeesRoles(ROLES)}
+                    {iterateEmployeesPositions(EMPLOYEES)}
                 </select>
                 <div className="modal-footer">
                     <button type="button" className="btn btn-secondary" onClick={closeModal}>Close</button>

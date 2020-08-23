@@ -10,7 +10,7 @@ const EmployeeList = (): JSX.Element => {
     const employeesListElement = employees.map((employee: IEmployee )=> <Employee key={employee.id}
                                                                                                  id={employee.id}
                                                                                                  salary={employee.salary}
-                                                                                                 role={employee.role}
+                                                                                                 position={employee.position}
                                                                                                  experience={employee.experience}
                                                                                                  isEmployeeCanBePromoted={employee.isEmployeeCanBePromoted}/> );
     return <div className='employee__list'>{employeesListElement}</div>

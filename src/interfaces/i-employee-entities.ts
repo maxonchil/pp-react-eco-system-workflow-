@@ -5,6 +5,6 @@ interface IEmployeeEntities {
         salary: number;
         experience: number;
         isEmployeeCanBePromoted: boolean;
-        experienceForPromotion?: number;
+        experienceForPromotion: number| null;
 }
 export default IEmployeeEntities;

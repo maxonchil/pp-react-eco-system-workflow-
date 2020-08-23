@@ -1,7 +1,7 @@
-import IEmployeeRoles from '../interfaces/i-employee-roles';
+import IEmployeePosition from '../interfaces/i-employee-position';
 import getRandomNumber from '../helpers/getRandomNumber';
 
-const EMPLOYEES: IEmployeeRoles = {
+const EMPLOYEES: IEmployeePosition = {
     JUNIOR: {
         id: getRandomNumber(10, 10000),
         key: 'Junior',
@@ -35,6 +35,7 @@ const EMPLOYEES: IEmployeeRoles = {
         value: 'MANAGER',
         salary: 5000,
         experience: getRandomNumber(50, 86),
+        experienceForPromotion: null,
         isEmployeeCanBePromoted: false
     },
 };

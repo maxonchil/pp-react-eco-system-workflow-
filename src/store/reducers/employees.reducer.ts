@@ -6,7 +6,7 @@ import EmployeeTypes from '../types/employeeTypes.enum'
 const initialState: IEmployee[] = [
     {
         id: 1,
-        role: 'JUNIOR',
+        position: 'JUNIOR',
         salary: 900,
         experience: 1,
         experienceForPromotion: 9,
@@ -14,7 +14,7 @@ const initialState: IEmployee[] = [
     },
     {
         id:2,
-        role: 'JUNIOR',
+        position: 'JUNIOR',
         salary: 900,
         experience: 5,
         experienceForPromotion: 9,
@@ -22,7 +22,7 @@ const initialState: IEmployee[] = [
     },
     {
         id: 3,
-        role: 'JUNIOR',
+        position: 'JUNIOR',
         salary: 900,
         experience: 4,
         experienceForPromotion: 9,
@@ -30,7 +30,7 @@ const initialState: IEmployee[] = [
     },
     {
         id: 4,
-        role: 'JUNIOR',
+        position: 'JUNIOR',
         salary: 900,
         experience: 3,
         experienceForPromotion: 9,
@@ -38,7 +38,7 @@ const initialState: IEmployee[] = [
     },
     {
         id:5,
-        role: 'MIDDLE',
+        position: 'MIDDLE',
         salary: 1500,
         experience: 12,
         experienceForPromotion: 36,
@@ -46,7 +46,7 @@ const initialState: IEmployee[] = [
     },
     {
         id: 6,
-        role: 'MIDDLE',
+        position: 'MIDDLE',
         salary: 1500,
         experience: 15,
         experienceForPromotion: 36,
@@ -54,7 +54,7 @@ const initialState: IEmployee[] = [
     },
     {
         id: 7,
-        role: 'MIDDLE',
+        position: 'MIDDLE',
         salary: 1500,
         experience: 24,
         experienceForPromotion: 36,
@@ -62,7 +62,7 @@ const initialState: IEmployee[] = [
     },
     {
         id: 8,
-        role: 'SENIOR',
+        position: 'SENIOR',
         salary: 3000,
         experience: 36,
         experienceForPromotion: 50,
@@ -70,7 +70,7 @@ const initialState: IEmployee[] = [
     },
     {
         id:9,
-        role: 'SENIOR',
+        position: 'SENIOR',
         salary: 3000,
         experience: 50,
         experienceForPromotion: 50,
@@ -78,7 +78,7 @@ const initialState: IEmployee[] = [
     },
     {
         id:10,
-        role: 'Manager',
+        position: 'Manager',
         salary: 5000,
         experience: 50,
         isEmployeeCanBePromoted: false
@@ -91,6 +91,9 @@ const employeesReducer = (state = initialState, {type, payload}: IEmployeesReduc
             return [...state, ...payload];
         case EmployeeTypes.UPDATE_EMPLOYEES:
             return [...payload];
+        case EmployeeTypes.PROMOTE_EMPLOYEE:
+            const [updatedEmployee] = payload;
+           return state.map((employee) => employee.id === updatedEmployee.id ? updatedEmployee : employee);
         default:
             return [...state];
     }

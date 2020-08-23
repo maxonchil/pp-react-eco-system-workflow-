@@ -1,9 +1,10 @@
 interface IEmployee {
     id: number,
-    role:string,
+    position: string,
     salary: number;
     experience: number;
     isEmployeeCanBePromoted: boolean;
-    experienceForPromotion?:number;
+    experienceForPromotion?: number;
 }
+
 export default IEmployee;
